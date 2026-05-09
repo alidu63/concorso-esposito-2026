@@ -1,0 +1,575 @@
+/* =========================================================================
+   Concorso Esposito 2026 — Stile "quaderno scolastico"
+   Palette: navy + oro + carta crema (matches video)
+   Mobile-first, no framework
+   ========================================================================= */
+
+:root {
+  --c-paper: #faf5e8;
+  --c-paper-light: #fdfaf2;
+  --c-rule: #d8dde4;          /* notebook ruled line */
+  --c-margin: #e0bdb4;        /* red-pink margin line */
+  --c-navy: #0e2a47;
+  --c-navy-soft: #1a3a5e;
+  --c-gold: #c9a227;
+  --c-gold-soft: #e0b941;
+  --c-text: #222;
+  --c-text-muted: #666;
+  --c-link: #1a4a8c;
+  --c-link-hover: #c9a227;
+  --c-card-bg: #ffffff;
+  --c-card-border: #e8e0cf;
+  --c-shadow: rgba(14, 42, 71, 0.10);
+  --c-accent-red: #b44638;
+  --c-accent-green: #3c8250;
+  --c-accent-blue: #326eaa;
+  --font-body: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", Roboto, Arial, sans-serif;
+  --font-display: "Helvetica Neue", "Segoe UI", system-ui, sans-serif;
+  --maxw: 960px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--c-text);
+  background-color: var(--c-paper);
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 31px, var(--c-rule) 31px, var(--c-rule) 32px);
+  min-height: 100vh;
+  padding-bottom: 60px;
+}
+
+/* Top gold strip */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 6px;
+  background: var(--c-gold);
+  z-index: 100;
+}
+
+a { color: var(--c-link); text-decoration: underline; text-underline-offset: 3px; }
+a:hover { color: var(--c-link-hover); }
+
+img { max-width: 100%; height: auto; display: block; }
+
+/* =========================================================================
+   Header / nav
+   ========================================================================= */
+.site-header {
+  background: var(--c-paper-light);
+  border-bottom: 2px solid var(--c-card-border);
+  padding: 18px 20px;
+  position: sticky;
+  top: 6px;
+  z-index: 50;
+  box-shadow: 0 2px 12px var(--c-shadow);
+}
+.site-header__inner {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.brand {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--c-navy);
+  text-decoration: none;
+  line-height: 1.2;
+}
+.brand small {
+  display: block;
+  font-weight: 400;
+  font-size: 0.78rem;
+  color: var(--c-text-muted);
+  margin-top: 2px;
+}
+.brand:hover { color: var(--c-gold); }
+
+.site-nav {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.site-nav a {
+  color: var(--c-navy);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 6px 0;
+  border-bottom: 2px solid transparent;
+  transition: border-color .2s, color .2s;
+  font-size: 0.95rem;
+}
+.site-nav a:hover, .site-nav a.is-active {
+  color: var(--c-gold);
+  border-bottom-color: var(--c-gold);
+}
+
+@media (max-width: 720px) {
+  .site-header__inner { flex-direction: column; align-items: flex-start; }
+  .site-nav { gap: 12px; font-size: 0.9rem; }
+}
+
+/* =========================================================================
+   Hero
+   ========================================================================= */
+.hero {
+  max-width: var(--maxw);
+  margin: 30px auto 50px;
+  padding: 0 20px;
+  text-align: center;
+}
+.hero__eyebrow {
+  font-size: 0.85rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--c-gold);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.1rem, 6vw, 3.4rem);
+  font-weight: 800;
+  color: var(--c-navy);
+  line-height: 1.1;
+  margin-bottom: 18px;
+  letter-spacing: -0.01em;
+}
+.hero__subtitle {
+  font-size: clamp(1.05rem, 2.4vw, 1.3rem);
+  color: var(--c-text-muted);
+  max-width: 700px;
+  margin: 0 auto 28px;
+  line-height: 1.5;
+}
+.hero__divider {
+  width: 80px;
+  height: 4px;
+  background: var(--c-gold);
+  margin: 0 auto 24px;
+  border-radius: 2px;
+}
+.hero__image {
+  margin: 30px auto 0;
+  max-width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px var(--c-shadow);
+  overflow: hidden;
+}
+
+/* =========================================================================
+   Buttons
+   ========================================================================= */
+.btn {
+  display: inline-block;
+  padding: 14px 26px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1rem;
+  background: var(--c-navy);
+  color: white !important;
+  text-decoration: none;
+  border-radius: 999px;
+  border: 2px solid var(--c-navy);
+  transition: all .2s;
+  cursor: pointer;
+  box-shadow: 0 4px 12px var(--c-shadow);
+}
+.btn:hover {
+  background: var(--c-gold);
+  border-color: var(--c-gold);
+  color: var(--c-navy) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px var(--c-shadow);
+}
+.btn--gold {
+  background: var(--c-gold);
+  border-color: var(--c-gold);
+  color: var(--c-navy) !important;
+}
+.btn--gold:hover {
+  background: var(--c-navy);
+  color: white !important;
+  border-color: var(--c-navy);
+}
+.btn--ghost {
+  background: transparent;
+  color: var(--c-navy) !important;
+  border-color: var(--c-navy);
+  box-shadow: none;
+}
+.btn--ghost:hover {
+  background: var(--c-navy);
+  color: white !important;
+}
+.btn-row {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* =========================================================================
+   Sections
+   ========================================================================= */
+.container {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+section { margin: 50px 0; }
+
+h2.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  font-weight: 800;
+  color: var(--c-navy);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+h2.section-title + .section-eyebrow,
+h2.section-title + .section-subtitle {
+  margin-top: 8px;
+}
+.section-eyebrow {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--c-gold);
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.section-subtitle {
+  font-size: 1.05rem;
+  color: var(--c-text-muted);
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+.section-divider {
+  width: 60px;
+  height: 3px;
+  background: var(--c-gold);
+  margin: 18px 0;
+  border-radius: 2px;
+}
+
+h3 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--c-navy);
+  margin: 30px 0 12px;
+}
+
+p { margin-bottom: 16px; }
+p strong { color: var(--c-navy); }
+
+ul, ol { margin: 0 0 18px 24px; }
+li { margin-bottom: 8px; line-height: 1.6; }
+
+/* =========================================================================
+   Cards
+   ========================================================================= */
+.card {
+  background: var(--c-card-bg);
+  border: 1px solid var(--c-card-border);
+  border-radius: 14px;
+  padding: 26px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 16px var(--c-shadow);
+}
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+  margin: 24px 0;
+}
+.card--image {
+  padding: 0;
+  overflow: hidden;
+}
+.card--image img { width: 100%; height: auto; }
+.card--image .card__body { padding: 18px 22px 22px; }
+.card h3 { margin-top: 0; }
+.card p:last-child { margin-bottom: 0; }
+.card a.card__cta {
+  display: inline-block;
+  margin-top: 8px;
+  font-weight: 600;
+  color: var(--c-navy);
+  text-decoration: none;
+  border-bottom: 2px solid var(--c-gold);
+  padding-bottom: 2px;
+}
+.card a.card__cta:hover { color: var(--c-gold); }
+
+/* =========================================================================
+   Quote
+   ========================================================================= */
+.quote {
+  background: white;
+  border-left: 6px solid var(--c-gold);
+  padding: 22px 26px;
+  margin: 28px 0;
+  font-size: 1.15rem;
+  font-style: italic;
+  color: var(--c-navy);
+  border-radius: 0 10px 10px 0;
+  box-shadow: 0 4px 14px var(--c-shadow);
+}
+.quote__cite {
+  display: block;
+  margin-top: 12px;
+  font-style: normal;
+  font-size: 0.9rem;
+  color: var(--c-text-muted);
+}
+
+/* =========================================================================
+   Stats / numbers
+   ========================================================================= */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  margin: 28px 0;
+}
+.stat {
+  text-align: center;
+  padding: 24px 16px;
+  background: white;
+  border: 1px solid var(--c-card-border);
+  border-radius: 12px;
+}
+.stat__num {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: var(--c-navy);
+  line-height: 1.1;
+}
+.stat__label {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.85rem;
+  color: var(--c-text-muted);
+  letter-spacing: 0.04em;
+}
+
+/* =========================================================================
+   Timeline
+   ========================================================================= */
+.timeline {
+  position: relative;
+  margin: 30px 0;
+  padding-left: 32px;
+  border-left: 3px solid var(--c-gold);
+}
+.timeline__item {
+  position: relative;
+  margin-bottom: 28px;
+  padding-left: 12px;
+}
+.timeline__item::before {
+  content: "";
+  position: absolute;
+  left: -41px;
+  top: 6px;
+  width: 14px;
+  height: 14px;
+  background: var(--c-gold);
+  border: 3px solid white;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px var(--c-gold);
+}
+.timeline__year {
+  font-weight: 800;
+  color: var(--c-navy);
+  font-size: 1.1rem;
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* =========================================================================
+   Promesse (3 colored cards)
+   ========================================================================= */
+.promesse {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin: 30px 0;
+}
+.promessa {
+  border-radius: 14px;
+  padding: 28px 22px;
+  color: white;
+  position: relative;
+  box-shadow: 0 4px 14px var(--c-shadow);
+}
+.promessa--1 { background: var(--c-accent-red); }
+.promessa--2 { background: var(--c-accent-green); }
+.promessa--3 { background: var(--c-accent-blue); }
+.promessa__num {
+  font-family: var(--font-display);
+  font-size: 2.6rem;
+  font-weight: 800;
+  line-height: 1;
+  display: block;
+  margin-bottom: 10px;
+}
+.promessa h3 {
+  color: white;
+  margin: 0 0 10px;
+  font-size: 1.2rem;
+}
+.promessa p {
+  color: white;
+  font-size: 0.95rem;
+  margin: 0;
+  line-height: 1.45;
+  opacity: 0.95;
+}
+
+/* =========================================================================
+   Video player
+   ========================================================================= */
+.video-wrap {
+  background: black;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px var(--c-shadow);
+  margin: 30px 0;
+}
+.video-wrap video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* =========================================================================
+   Material grid (downloads)
+   ========================================================================= */
+.material {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: white;
+  border: 1px solid var(--c-card-border);
+  border-radius: 12px;
+  padding: 18px 22px;
+  margin-bottom: 12px;
+  text-decoration: none;
+  color: var(--c-text);
+  transition: transform .15s, box-shadow .15s, border-color .15s;
+}
+.material:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px var(--c-shadow);
+  border-color: var(--c-gold);
+}
+.material__icon {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--c-navy);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+.material__title {
+  font-weight: 700;
+  color: var(--c-navy);
+  margin: 0 0 2px;
+}
+.material__desc {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--c-text-muted);
+}
+
+/* =========================================================================
+   QR card (for index)
+   ========================================================================= */
+.qr-card {
+  background: white;
+  border: 2px solid var(--c-gold);
+  border-radius: 14px;
+  padding: 24px;
+  text-align: center;
+  max-width: 320px;
+  margin: 30px auto;
+  box-shadow: 0 4px 18px var(--c-shadow);
+}
+.qr-card img {
+  margin: 0 auto 12px;
+  max-width: 220px;
+}
+.qr-card p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--c-text-muted);
+}
+.qr-card strong { color: var(--c-navy); }
+
+/* =========================================================================
+   Footer
+   ========================================================================= */
+.site-footer {
+  margin-top: 70px;
+  padding: 32px 20px;
+  background: var(--c-navy);
+  color: white;
+  text-align: center;
+}
+.site-footer__inner { max-width: var(--maxw); margin: 0 auto; }
+.site-footer h4 {
+  color: var(--c-gold);
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 8px;
+}
+.site-footer p { margin: 4px 0; font-size: 0.9rem; opacity: 0.92; }
+.site-footer a { color: var(--c-gold-soft); text-decoration: none; }
+.site-footer a:hover { text-decoration: underline; }
+.site-footer__credits {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255,255,255,0.18);
+  font-size: 0.82rem;
+  opacity: 0.75;
+}
+
+/* =========================================================================
+   Utilities
+   ========================================================================= */
+.text-center { text-align: center; }
+.text-muted { color: var(--c-text-muted); }
+.mt-0 { margin-top: 0 !important; }
+.mb-0 { margin-bottom: 0 !important; }
+.lead { font-size: 1.12rem; line-height: 1.65; }
+.gold { color: var(--c-gold); }
+.navy { color: var(--c-navy); }
+.bigword { font-weight: 800; color: var(--c-navy); font-family: var(--font-display); }
+
+/* Print: keep readable for QR-printed handouts */
+@media print {
+  body { background: white; }
+  .site-header, .site-footer, .qr-card { display: none; }
+}
